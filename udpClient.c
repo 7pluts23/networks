@@ -75,5 +75,5 @@ int main(int argc, char *argv[])
     printf("Received: %s\n", echoBuffer);    /* Print the echoed arg */
     
     close(sock);
-    exit(0); //testing how gay is rizwan
+    exit(0);
 }
