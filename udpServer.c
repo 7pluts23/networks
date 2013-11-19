@@ -28,6 +28,7 @@ int main(int argc, char *argv[])
 	struct sockaddr_in echoClntAddr;	/* Client address */
 	unsigned int cliAddrLen;			/* Length of incoming message */
 	char echoBuffer[ECHOMAX];			/* Buffer for echo string */
+	struct request clientRequest;
 	unsigned short echoServPort;		/* Server port */
 	int recvMsgSize;					/* Size of received message */
 	char message[5];					/* String that holds the server data */
@@ -60,11 +61,12 @@ int main(int argc, char *argv[])
 		cliAddrLen = sizeof(echoClntAddr);
 
 		/* Block until receive message from a client */
-		if ((recvMsgSize = recvfrom(sock, echoBuffer, ECHOMAX, 0,
+		if ((recvMsgSize = recvfrom(sock, &clientRequest, sizeof(clientRequest), 0,
 			(struct sockaddr *) &echoClntAddr, &cliAddrLen)) < 0)
 			DieWithError("recvfrom() failed");
 
 		printf("Handling client %s\n", inet_ntoa(echoClntAddr.sin_addr));
+		printf("inc %d\n", clientRequest.inc);
 
 		/* Send received datagram back to the client */
 		if (sendto(sock, echoBuffer, recvMsgSize, 0, 

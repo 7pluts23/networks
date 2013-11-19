@@ -29,7 +29,7 @@ int main(int argc, char *argv[])
 	unsigned short echoServPort;		/* Echo server port */
 	unsigned int fromSize;				/* In-out of address size for recvfrom() */
 	char *servIP;						/* IP address of server */
-	struct request *clientReqPointer;	/* Pointer to clientRequest */
+	struct request clientReqPointer;	/* Pointer to clientRequest */
 	char echoBuffer[ECHOMAX+1];			/* Buffer for receiving echoed string */
 	int echoStringLen;					/* Length of string to echo */
 	int respStringLen;					/* Length of received response */
@@ -40,20 +40,13 @@ int main(int argc, char *argv[])
 		exit(1);
 	}
 	
-//	clientRequest.c = 'a';
-//	clientReqPointer = &clientRequest;
-	clientReqPointer = malloc(sizeof(struct request));
-	strcpy(clientReqPointer->client_ip, "111.111.111.111");
-	clientReqPointer->inc = 0;
-	clientReqPointer->client = atoi(argv[3]);
-	clientReqPointer->req = 0;
-	clientReqPointer->c = 'a';	
+	strcpy(clientReqPointer.client_ip, "111.111.111.111");
+	clientReqPointer.inc = 10;
+	clientReqPointer.client = atoi(argv[3]);
+	clientReqPointer.req = 0;
+	clientReqPointer.c = 'a';	
 
 	servIP = argv[1];			/* First arg: server IP address (dotted quad) */
-//	echoString = argv[3];		/* Second arg: string to echo */
-
-	//	if ((echoStringLen = strlen(echoString)) > ECHOMAX)	/* Check input length */
-	//	DieWithError("Echo word too long");
 
 	if (argc == 4)
 		echoServPort = atoi(argv[2]);	/* Use given port, if any */
@@ -71,8 +64,8 @@ int main(int argc, char *argv[])
 	echoServAddr.sin_port	= htons(echoServPort);		/* Server port */
 
 	/* Send the string to the server */
-	if (sendto(sock, clientReqPointer, echoStringLen, 0, (struct sockaddr *)
-		&echoServAddr, sizeof(echoServAddr)) != echoStringLen)
+	if (sendto(sock, &clientReqPointer, sizeof(clientReqPointer), 0, (struct sockaddr *)
+		&echoServAddr, sizeof(echoServAddr)) != sizeof(clientReqPointer))
 			DieWithError("sendto() sent a different number of bytes than expected");
   
 	/* Recv a response */
@@ -92,6 +85,5 @@ int main(int argc, char *argv[])
 	printf("Received: %s\n", echoBuffer);	/* Print the echoed arg */
 	
 	close(sock);
-	free(clientReqPointer);
 	exit(0);
 }
