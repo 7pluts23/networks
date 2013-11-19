@@ -28,7 +28,7 @@ int main(int argc, char *argv[])
 
     if ((argc < 3) || (argc > 4))    /* Test for correct number of arguments */
     {
-        fprintf(stderr,"Usage: %s <Server IP> <Port Number> <Client Number>\n", argv[0]);
+        fprintf(stderr,"Usage: %s <Server IP> <Client Number> <Port Number>\n", argv[0]);
         exit(1);
     }
 
