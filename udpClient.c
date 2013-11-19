@@ -28,18 +28,18 @@ int main(int argc, char *argv[])
 
     if ((argc < 3) || (argc > 4))    /* Test for correct number of arguments */
     {
-        fprintf(stderr,"Usage: %s <Server IP> <Client Number> <Port Number>\n", argv[0]);
+        fprintf(stderr,"Usage: %s <Server IP> <Port Number> <Client Number>\n", argv[0]);
         exit(1);
     }
 
     servIP = argv[1];           /* First arg: server IP address (dotted quad) */
-    echoString = argv[2];       /* Second arg: string to echo */
+    echoString = argv[3];       /* Second arg: string to echo */
 
     if ((echoStringLen = strlen(echoString)) > ECHOMAX)  /* Check input length */
         DieWithError("Echo word too long");
 
     if (argc == 4)
-        echoServPort = atoi(argv[3]);  /* Use given port, if any */
+        echoServPort = atoi(argv[2]);  /* Use given port, if any */
     else
         echoServPort = 7;  /* 7 is the well-known port for the echo service */
 
