@@ -4,6 +4,7 @@
 #include <stdlib.h>		/* for atoi() and exit() */
 #include <string.h>		/* for memset() */
 #include <unistd.h>		/* for close() */
+#include <time.h>
 
 #define ECHOMAX 255		/* Longest string to echo */
 
@@ -40,11 +41,13 @@ int main(int argc, char *argv[])
 		exit(1);
 	}
 	
+	srand(time(0));						/* Seed the random character generator */
+	
 	strcpy(clientReqPointer.client_ip, "333.333.333.333");
 	clientReqPointer.inc = 10;
 	clientReqPointer.client = atoi(argv[3]);
 	clientReqPointer.req = 0;
-	clientReqPointer.c = 'b';	
+	clientReqPointer.c = rand()%26+97;	
 
 	servIP = argv[1];			/* First arg: server IP address (dotted quad) */
 
