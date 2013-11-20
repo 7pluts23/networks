@@ -30,7 +30,7 @@ int main(int argc, char *argv[])
 	unsigned int fromSize;				/* In-out of address size for recvfrom() */
 	char *servIP;						/* IP address of server */
 	struct request clientReqPointer;	/* Pointer to clientRequest */
-	char echoBuffer[ECHOMAX+1];			/* Buffer for receiving echoed string */
+	char echoBuffer[5];					/* Buffer for receiving echoed string */
 	int echoStringLen;					/* Length of string to echo */
 	int respStringLen;					/* Length of received response */
 
@@ -70,8 +70,8 @@ int main(int argc, char *argv[])
   
 	/* Recv a response */
 	fromSize = sizeof(fromAddr);
-	if ((respStringLen = recvfrom(sock, echoBuffer, ECHOMAX, 0, 
-	(struct sockaddr *) &fromAddr, &fromSize)) != echoStringLen)
+	if ((respStringLen = recvfrom(sock, echoBuffer, 5, 0, 
+	(struct sockaddr *) &fromAddr, &fromSize)) != 5)
 		DieWithError("recvfrom() failed");
 
 	if (echoServAddr.sin_addr.s_addr != fromAddr.sin_addr.s_addr)
@@ -81,7 +81,7 @@ int main(int argc, char *argv[])
 	}
 
 	/* null-terminate the received data */
-	echoBuffer[respStringLen] = '\0';
+	//echoBuffer[respStringLen] = '\0';
 	printf("Received: %s\n", echoBuffer);	/* Print the echoed arg */
 	
 	close(sock);

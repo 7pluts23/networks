@@ -32,6 +32,7 @@ int main(int argc, char *argv[])
 	unsigned short echoServPort;		/* Server port */
 	int recvMsgSize;					/* Size of received message */
 	char message[5];					/* String that holds the server data */
+	int i;								/* Loop counter */
 
 	if (argc != 2)			/* Test for correct number of parameters */
 	{
@@ -66,10 +67,17 @@ int main(int argc, char *argv[])
 			DieWithError("recvfrom() failed");
 
 		printf("Handling client %s\n", inet_ntoa(echoClntAddr.sin_addr));
-		printf("inc %d\n", clientRequest.inc);
+		for(i = 4; i > 0; i--) {
+			message[i] = message[i-1];
+		}
+		message[0] = clientRequest.c;
+		
+		for(i = 0; i < 5; i++) {
+			printf("message[%d]: %c\n", i, message[i]);
+		}
 
 		/* Send received datagram back to the client */
-		if (sendto(sock, echoBuffer, recvMsgSize, 0, 
+		if (sendto(sock, message, recvMsgSize, 0, 
 			 (struct sockaddr *) &echoClntAddr, sizeof(echoClntAddr)) != recvMsgSize)
 			DieWithError("sendto() sent a different number of bytes than expected");
 	}
