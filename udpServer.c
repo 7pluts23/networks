@@ -71,14 +71,10 @@ int main(int argc, char *argv[])
 			message[i] = message[i-1];
 		}
 		message[0] = clientRequest.c;
-		
-		for(i = 0; i < 5; i++) {
-			printf("message[%d]: %c\n", i, message[i]);
-		}
 
 		/* Send received datagram back to the client */
-		if (sendto(sock, message, recvMsgSize, 0, 
-			 (struct sockaddr *) &echoClntAddr, sizeof(echoClntAddr)) != recvMsgSize)
+		if (sendto(sock, message, sizeof(message), 0, 
+			 (struct sockaddr *) &echoClntAddr, sizeof(echoClntAddr)) != sizeof(message))
 			DieWithError("sendto() sent a different number of bytes than expected");
 	}
 	/* NOT REACHED */

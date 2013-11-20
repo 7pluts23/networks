@@ -40,11 +40,11 @@ int main(int argc, char *argv[])
 		exit(1);
 	}
 	
-	strcpy(clientReqPointer.client_ip, "111.111.111.111");
+	strcpy(clientReqPointer.client_ip, "333.333.333.333");
 	clientReqPointer.inc = 10;
 	clientReqPointer.client = atoi(argv[3]);
 	clientReqPointer.req = 0;
-	clientReqPointer.c = 'a';	
+	clientReqPointer.c = 'b';	
 
 	servIP = argv[1];			/* First arg: server IP address (dotted quad) */
 
@@ -81,7 +81,7 @@ int main(int argc, char *argv[])
 	}
 
 	/* null-terminate the received data */
-	//echoBuffer[respStringLen] = '\0';
+	echoBuffer[5] = '\0';
 	printf("Received: %s\n", echoBuffer);	/* Print the echoed arg */
 	
 	close(sock);
