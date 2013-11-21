@@ -1,6 +1,6 @@
 /* TODO: 
  * - Client IP address
- * - Incarnation number
+ * - Incarnation number - increment with probability 0.5 after a random number of reqs sent
  * - Request logic on client and server side
  * - Simulating failures
  */
