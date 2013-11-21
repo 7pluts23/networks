@@ -41,6 +41,9 @@ int main(int argc, char *argv[])
 	}
 
 	echoServPort = atoi(argv[1]);	/* First arg:  local port */
+	for(i = 0; i < 5; i++) {		/* Initialize message so it is empty */
+		message[i] = ' ';
+	}
 
 	/* Create socket for sending/receiving datagrams */
 	if ((sock = socket(PF_INET, SOCK_DGRAM, IPPROTO_UDP)) < 0)

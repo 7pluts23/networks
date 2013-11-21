@@ -3,6 +3,7 @@
  * - Incarnation number - increment with probability 0.5 after a random number of reqs sent
  * - Request logic on client and server side
  * - Simulating failures
+ * - Serverside: keeping track of P, I, C values 
  */
 
 #include <stdio.h>		/* for printf() and fprintf() */
