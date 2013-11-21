@@ -75,7 +75,7 @@ int main(int argc, char *argv[])
 	echoServAddr.sin_addr.s_addr = inet_addr(servIP);	/* Server IP address */
 	echoServAddr.sin_port	= htons(echoServPort);		/* Server port */
 
-	for(i = 0; i <= 20; i++) {
+	for(i = 0; i < 20; i++) {
 		
 		strcpy(clientRequest.client_ip, "333.333.333.333");
 		clientRequest.inc = 10;
