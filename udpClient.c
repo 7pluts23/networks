@@ -40,7 +40,7 @@ int main(int argc, char *argv[])
 	char *servIP;						/* IP address of server */
 	struct request clientRequest;		/* Pointer to clientRequest */
 	struct timeval timer;				/* Timeval struct for timeouts */
-	char echoBuffer[5];					/* Buffer for receiving echoed string */
+	char echoBuffer[6];					/* Buffer for receiving echoed string */
 	int echoStringLen;					/* Length of string to echo */
 	int respStringLen;					/* Length of received response */
 	int i;								/* Loop counter */
@@ -76,8 +76,17 @@ int main(int argc, char *argv[])
 	echoServAddr.sin_addr.s_addr = inet_addr(servIP);	/* Server IP address */
 	echoServAddr.sin_port	= htons(echoServPort);		/* Server port */
 
-	for(i = 0; i < 20; i++) {
-		
+	int k;
+	
+	do {
+
+		k = rand();
+		if(k%2 == 0) {
+			k = 20;
+		}
+
+	for(i = 0; i < k%21; i++) {
+
 		strcpy(clientRequest.client_ip, "333.333.333.333");
 		clientRequest.inc = 10;
 		clientRequest.client = atoi(argv[3]);
@@ -103,8 +112,9 @@ int main(int argc, char *argv[])
 		
 		/* null-terminate the received data */
 		echoBuffer[5] = '\0';
-		printf("Received: %s\n", echoBuffer);	/* Print the echoed arg */
+		printf("Received %d: %s\n", i+1, echoBuffer);	/* Print the echoed arg */
 	}
+	} while (k != 20);
 	
 	close(sock);
 	exit(0);
