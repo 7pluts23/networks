@@ -1,9 +1,10 @@
 /* TODO: 
- * - Client IP address
- * - Incarnation number - increment with probability 0.5 after a random number of reqs sent
- * - Request logic on client and server side
- * - Simulating failures
- * - Serverside: keeping track of P, I, C values 
+ * - Client IP address								√
+ * - Incarnation number - increment with probability 0.5 after a random number of reqs sent	
+ * - Request logic on client and server side		√
+ * - Simulating failures							
+ * - Serverside: keeping track of P, I, C values 	√
+ * - Client dealing with timeouts
  */
 
 #include <stdio.h>		/* for printf() and fprintf() */
@@ -69,7 +70,7 @@ int main(int argc, char *argv[])
 	struct request clientRequest;		/* Pointer to clientRequest */
 	struct timeval timer;				/* Timeval struct for timeouts */
 	char echoBuffer[6];					/* Buffer for receiving echoed string */
-	char clientIP[16];
+	char clientIP[16];					/* String that holds the client's IP */
 	int echoStringLen;					/* Length of string to echo */
 	int respStringLen;					/* Length of received response */
 	int i;								/* Loop counter */
@@ -88,7 +89,7 @@ int main(int argc, char *argv[])
 		echoServPort = 7;	/* 7 is the well-known port for the echo service */
 	
 	srand(time(0));						/* Seed the random character generator */
-	timer.tv_sec = 1;					/* Set timeout to one second */
+	timer.tv_sec = 5;					/* Set timeout to five seconds */
 	timer.tv_usec = 0;
 	
 	if(GetIP(clientIP) != 0)
