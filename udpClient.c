@@ -13,6 +13,7 @@
 #include <string.h>		/* for memset() */
 #include <unistd.h>		/* for close() */
 #include <time.h>		/* for srand(time()) */
+#include <netdb.h>
 
 #define ECHOMAX 255		/* Longest string to echo */
 
@@ -30,6 +31,33 @@ void DieWithError(const char *errorMessage)	/* External error handling function 
 	exit(1);
 }
 
+int GetIP(char *IP) {
+	char hostname[128];
+	struct addrinfo hints, *res;
+	struct in_addr addr;
+	int err;
+
+	gethostname(hostname, sizeof(hostname));
+	
+	memset(&hints, 0, sizeof(hints));
+	hints.ai_socktype = SOCK_STREAM;
+	hints.ai_family = AF_INET;
+
+	if (getaddrinfo(hostname, NULL, &hints, &res) != 0) {
+		return 1;
+	}
+
+	addr.s_addr = ((struct sockaddr_in *)(res->ai_addr))->sin_addr.s_addr;
+	
+	strcpy(IP, inet_ntoa(addr));
+	
+	freeaddrinfo(res);
+	
+	printf("IP: %s\n", IP);
+	
+	return 0;
+}
+
 int main(int argc, char *argv[])
 {
 	int sock;							/* Socket descriptor */
@@ -41,6 +69,7 @@ int main(int argc, char *argv[])
 	struct request clientRequest;		/* Pointer to clientRequest */
 	struct timeval timer;				/* Timeval struct for timeouts */
 	char echoBuffer[6];					/* Buffer for receiving echoed string */
+	char clientIP[16];
 	int echoStringLen;					/* Length of string to echo */
 	int respStringLen;					/* Length of received response */
 	int i;								/* Loop counter */
@@ -50,10 +79,6 @@ int main(int argc, char *argv[])
 		fprintf(stderr,"Usage: %s <Server IP> <Port Number> <Client Number>\n", argv[0]);
 		exit(1);
 	}
-	
-	srand(time(0));						/* Seed the random character generator */
-	timer.tv_sec = 1;					/* Set timeout to one second */
-	timer.tv_usec = 0;
 
 	servIP = argv[1];			/* First arg: server IP address (dotted quad) */
 
@@ -61,6 +86,14 @@ int main(int argc, char *argv[])
 		echoServPort = atoi(argv[2]);	/* Use given port, if any */
 	else
 		echoServPort = 7;	/* 7 is the well-known port for the echo service */
+	
+	srand(time(0));						/* Seed the random character generator */
+	timer.tv_sec = 1;					/* Set timeout to one second */
+	timer.tv_usec = 0;
+	
+	if(GetIP(clientIP) != 0)
+		DieWithError("Error retrieving IP Address");
+	
 
 	/* Create a datagram/UDP socket */
 	if ((sock = socket(PF_INET, SOCK_DGRAM, IPPROTO_UDP)) < 0)
@@ -87,7 +120,7 @@ int main(int argc, char *argv[])
 
 	for(i = 0; i < k%21; i++) {
 
-		strcpy(clientRequest.client_ip, "333.333.333.333");
+		strcpy(clientRequest.client_ip, clientIP);
 		clientRequest.inc = 10;
 		clientRequest.client = atoi(argv[3]);
 		clientRequest.req = i;
