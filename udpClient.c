@@ -146,6 +146,7 @@ int main(int argc, char *argv[])
 		/* null-terminate the received data */
 		echoBuffer[5] = '\0';
 		printf("Received %d: %s\n", i+1, echoBuffer);	/* Print the echoed arg */
+		sleep(0.1);
 	}
 	} while (k != 20);
 	
