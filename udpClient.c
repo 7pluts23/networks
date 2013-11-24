@@ -110,7 +110,7 @@ int main(int argc, char *argv[])
 	echoServAddr.sin_addr.s_addr = inet_addr(servIP);	/* Server IP address */
 	echoServAddr.sin_port	= htons(echoServPort);		/* Server port */
 
-	int k = 1;
+	int k = rand()%21;
 
 	for(i = 1; i < 21; i++) {
         if(k == i) {
