@@ -131,7 +131,7 @@ int main(int argc, char *argv[])
   
 		/* Recv a response */
 		fromSize = sizeof(fromAddr);
-		while (recvfrom(sock, echoBuffer, 5, 0, (struct sockaddr *) &fromAddr, &fromSize)) {
+		while (recvfrom(sock, echoBuffer, 5, 0, (struct sockaddr *) &fromAddr, &fromSize) != 5) {
 			if (sendto(sock, &clientRequest, sizeof(clientRequest), 0, (struct sockaddr *)
 				&echoServAddr, sizeof(echoServAddr)) != sizeof(clientRequest))
 					DieWithError("sendto() sent a different number of bytes than expected");
