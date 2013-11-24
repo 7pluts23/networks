@@ -58,6 +58,8 @@ int main(int argc, char *argv[])
 	}
 	
 	tableSize = 0;					/* Initially the client table is empty */
+	drop = 0;
+	noRespond = 0;
 	srand(time(0));					/* Seed the random character generator */
 
 	/* Create socket for sending/receiving datagrams */
@@ -175,10 +177,14 @@ int main(int argc, char *argv[])
 			tableSize = (tableSize+1)%NUMCLIENTS;			
 		}
 		
-		if(drop)
+		if(drop) {
 			printf("Failure: Dropping request\n");
-		if(noRespond)
+			drop = 0;
+		}
+		if(noRespond) {
+			noRespond = 0;
 			printf("Failure: Not responding\n");
+		}
 	}
 	/* NOT REACHED */
 }

@@ -4,7 +4,7 @@
  * - Request logic on client and server side		√
  * - Simulating failures							
  * - Serverside: keeping track of P, I, C values 	√
- * - Client dealing with timeouts
+ * - Client dealing with timeouts					
  */
 
 #include <stdio.h>		/* for printf() and fprintf() */
