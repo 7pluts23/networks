@@ -1,3 +1,7 @@
+/*
+ * Authors: Rizwan Ahmad & Stephen Pluta 
+ */
+
 #include <stdio.h>		/* for printf() and fprintf() */
 #include <sys/socket.h> /* for socket() and bind() */
 #include <arpa/inet.h>	/* for sockaddr_in and inet_ntoa() */

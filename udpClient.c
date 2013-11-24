@@ -1,11 +1,6 @@
-/* TODO: 
-* - Client IP address								√
-* - Incarnation number - increment with probability 0.5 after a random number of reqs sent	
-* - Request logic on client and server side			√
-* - Simulating failures								√
-* - Serverside: keeping track of P, I, C values 	√
-* - Client dealing with timeouts					√
-*/
+/*
+ * Authors: Rizwan Ahmad & Stephen Pluta 
+ */
 
 #include <stdio.h>		/* for printf() and fprintf() */
 #include <sys/socket.h> /* for socket(), connect(), sendto(), and recvfrom() */
@@ -97,7 +92,6 @@ int main(int argc, char *argv[])
 	
 	if(GetIP(clientIP) != 0)
 		DieWithError("Error retrieving IP Address");
-	
 
 	/* Create a datagram/UDP socket */
 	if ((sock = socket(PF_INET, SOCK_DGRAM, IPPROTO_UDP)) < 0)
@@ -118,6 +112,7 @@ int main(int argc, char *argv[])
 
 	for(i = 1; i < 21; i++) {
 		
+		/* Logic for the 0.5 chance at failure */
 		if(k == i) {
 			k = rand()%21 + i;
 			if(k%2 == 0) {
@@ -131,6 +126,7 @@ int main(int argc, char *argv[])
 			}
 		}
 
+		/* Set all of the request values to be sent */
 		fp = fopen("./inc.txt", "r");
 		strcpy(clientRequest.client_ip, clientIP);
 		clientRequest.inc = fgetc(fp) - 48;
@@ -152,6 +148,7 @@ int main(int argc, char *argv[])
 					DieWithError("sendto() sent a different number of bytes than expected");
 		}
 
+		/* Verify addresses */
 		if (echoServAddr.sin_addr.s_addr != fromAddr.sin_addr.s_addr)
 		{
 			fprintf(stderr,"Error: received a packet from unknown source.\n");
