@@ -1,5 +1,8 @@
 /*
+ * File: udpServer.c
  * Authors: Rizwan Ahmad & Stephen Pluta 
+ * Description: This file acts as a server which receives requests from the client
+ *				modeled on udpClient.c and serves a string to the client as necessary
  */
 
 #include <stdio.h>		/* for printf() and fprintf() */
@@ -14,18 +17,19 @@
 #define NUMCLIENTS 10
 
 struct request{
-	char client_ip[16]; /* To hold client IP address in dotted decimal */
-	int inc;			/* Incarnation number of client */
-	int client;			/* Client number */
-	int req;			/* Request number */
-	char c;				/* Random character client sends to server */
+	char client_ip[16]; 		/* To hold client IP address in dotted decimal */
+	int inc;					/* Incarnation number of client */
+	int client;					/* Client number */
+	int req;					/* Request number */
+	char c;						/* Random character client sends to server */
 };
 
+/* Structure which is used to keep track of past clients */
 struct client{
-	char processorNumber[16];
-	int inc;
-	int client;
-	int req;
+	char processorNumber[16];	/* Holds the IP address */
+	int inc;					/* Incarnation number */
+	int client;					/* Client number */
+	int req;					/* Request number */
 };
 
 void DieWithError(const char *errorMessage) /* External error handling function */
@@ -186,6 +190,7 @@ int main(int argc, char *argv[])
 			tableSize = (tableSize+1)%NUMCLIENTS;			
 		}
 		
+		/* If a failure was simulated, print the failure and reset the boolean */
 		if(drop) {
 			printf("Failure: Dropping request\n");
 			drop = 0;

@@ -1,5 +1,8 @@
 /*
+ * File: udpClient.c
  * Authors: Rizwan Ahmad & Stephen Pluta 
+ * Description: This file acts as a client which sends requests to the server modeled
+ * 				on udpServer.c
  */
 
 #include <stdio.h>		/* for printf() and fprintf() */
@@ -27,7 +30,7 @@ void DieWithError(const char *errorMessage)	/* External error handling function 
 	exit(1);
 }
 
-int GetIP(char *IP) {
+int GetIP(char *IP) {						/* Retrieve the client's IP address */
 	char hostname[128];
 	struct addrinfo hints, *res;
 	struct in_addr addr;
@@ -35,6 +38,7 @@ int GetIP(char *IP) {
 
 	gethostname(hostname, sizeof(hostname));
 	
+	/* Variables to be used by the getaddrinfo function */
 	memset(&hints, 0, sizeof(hints));
 	hints.ai_socktype = SOCK_STREAM;
 	hints.ai_family = AF_INET;
@@ -43,12 +47,16 @@ int GetIP(char *IP) {
 		return 1;
 	}
 
+	/* Parse the addr variable for the IP address */
 	addr.s_addr = ((struct sockaddr_in *)(res->ai_addr))->sin_addr.s_addr;
 	
+	/* Copy the IP to the string passed into this function */
 	strcpy(IP, inet_ntoa(addr));
 	
+	/* Free res */
 	freeaddrinfo(res);
 	
+	/* Print the IP address */
 	printf("IP: %s\n", IP);
 	
 	return 0;
