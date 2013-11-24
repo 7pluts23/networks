@@ -105,6 +105,11 @@ int main(int argc, char *argv[])
 				break;
 			}
 			
+			/* If the client table is empty, break from the loop */
+			if(!tableSize) {
+				break;
+			}
+			
 			/* See if the current request client exists in the client table */
 			if(clientRequest.inc == clients[i].inc && clientRequest.client == clients[i].client && 
 			!strcmp(clientRequest.client_ip, clients[i].processorNumber)) {
