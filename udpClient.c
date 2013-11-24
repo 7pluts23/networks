@@ -111,15 +111,16 @@ int main(int argc, char *argv[])
 	echoServAddr.sin_port	= htons(echoServPort);		/* Server port */
 
 	int k;
-	
+	i = 1;
+
 	do {
 
 		k = rand();
 		if(k%2 == 0) {
-			k = 20;
+			
 		}
 
-	for(i = 0; i < k%21; i++) {
+	for(i = 1; i < k%22; i++) {
 
 		strcpy(clientRequest.client_ip, clientIP);
 		clientRequest.inc = 10;
@@ -146,10 +147,12 @@ int main(int argc, char *argv[])
 		
 		/* null-terminate the received data */
 		echoBuffer[5] = '\0';
-		printf("Received %d: %s\n", i+1, echoBuffer);	/* Print the echoed arg */
+		printf("Received %d: %s\n", i, echoBuffer);	/* Print the echoed arg */
 		sleep(0.1);
+
+		i = k%22 - 1;
 	}
-	} while (k != 20);
+	} while (i != 20);
 	
 	close(sock);
 	exit(0);
