@@ -72,6 +72,10 @@ int main(int argc, char *argv[])
 	char echoBuffer[6];					/* Buffer for receiving echoed string */
 	char clientIP[16];					/* String that holds the client's IP */
 	int i;								/* Loop counter */
+	//FILE *fp;							/* Pointer to incarnation file */
+
+	//fp = fopen("./inc.txt", "w+");
+	//fprintf(fp, "0\n");
 
 	if ((argc < 3) || (argc > 4))		/* Test for correct number of arguments */
 	{
@@ -131,7 +135,7 @@ int main(int argc, char *argv[])
   
 		/* Recv a response */
 		fromSize = sizeof(fromAddr);
-		while (recvfrom(sock, echoBuffer, 5, 0, (struct sockaddr *) &fromAddr, &fromSize)) {
+		while (recvfrom(sock, echoBuffer, 5, 0, (struct sockaddr *) &fromAddr, &fromSize) != 5) {
 			if (sendto(sock, &clientRequest, sizeof(clientRequest), 0, (struct sockaddr *)
 				&echoServAddr, sizeof(echoServAddr)) != sizeof(clientRequest))
 					DieWithError("sendto() sent a different number of bytes than expected");
@@ -149,6 +153,7 @@ int main(int argc, char *argv[])
 		sleep(0.1);
 	}
 	
+	//fclose(fp);
 	close(sock);
 	exit(0);
 }
