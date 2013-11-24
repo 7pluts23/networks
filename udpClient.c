@@ -72,10 +72,11 @@ int main(int argc, char *argv[])
 	char echoBuffer[6];					/* Buffer for receiving echoed string */
 	char clientIP[16];					/* String that holds the client's IP */
 	int i;								/* Loop counter */
-	//FILE *fp;							/* Pointer to incarnation file */
+	FILE *fp;							/* Pointer to incarnation file */
 
-	//fp = fopen("./inc.txt", "w+");
-	//fprintf(fp, "0\n");
+	fp = fopen("./inc.txt", "w");
+	fprintf(fp, "0\n");
+	fclose(fp);
 
 	if ((argc < 3) || (argc > 4))		/* Test for correct number of arguments */
 	{
@@ -91,7 +92,7 @@ int main(int argc, char *argv[])
 		echoServPort = 7;	/* 7 is the well-known port for the echo service */
 	
 	srand(time(0));						/* Seed the random character generator */
-	timer.tv_sec = 1;					/* Set timeout to five seconds */
+	timer.tv_sec = 3;					/* Set timeout to five seconds */
 	timer.tv_usec = 0;
 	
 	if(GetIP(clientIP) != 0)
@@ -113,20 +114,30 @@ int main(int argc, char *argv[])
 	echoServAddr.sin_port	= htons(echoServPort);		/* Server port */
 
 	int k = rand()%21;
+	int temp;
 
 	for(i = 1; i < 21; i++) {
+		
 		if(k == i) {
 			k = rand()%21 + i;
 			if(k%2 == 0) {
-				//incarnation increment
+				/* Icarnation increment */
+				fp = fopen("./inc.txt", "r");
+				temp = fgetc(fp) - 48;
+				fclose(fp);
+				fp = fopen("./inc.txt", "w");
+				fprintf(fp, "%d\n", temp + 1);
+				fclose(fp);
 			}
 		}
 
+		fp = fopen("./inc.txt", "r");
 		strcpy(clientRequest.client_ip, clientIP);
-		clientRequest.inc = 10;
+		clientRequest.inc = fgetc(fp) - 48;
 		clientRequest.client = atoi(argv[3]);
 		clientRequest.req = i;
 		clientRequest.c = rand()%26+97;
+		fclose(fp);
 		
 		/* Send the request to the server */
 		if (sendto(sock, &clientRequest, sizeof(clientRequest), 0, (struct sockaddr *)
@@ -153,7 +164,6 @@ int main(int argc, char *argv[])
 		sleep(0.1);
 	}
 	
-	//fclose(fp);
 	close(sock);
 	exit(0);
 }
