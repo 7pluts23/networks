@@ -1,11 +1,11 @@
 /* TODO: 
- * - Client IP address								√
- * - Incarnation number - increment with probability 0.5 after a random number of reqs sent	
- * - Request logic on client and server side		√
- * - Simulating failures							
- * - Serverside: keeping track of P, I, C values 	√
- * - Client dealing with timeouts					
- */
+* - Client IP address								√
+* - Incarnation number - increment with probability 0.5 after a random number of reqs sent	
+* - Request logic on client and server side			√
+* - Simulating failures								√
+* - Serverside: keeping track of P, I, C values 	√
+* - Client dealing with timeouts					√
+*/
 
 #include <stdio.h>		/* for printf() and fprintf() */
 #include <sys/socket.h> /* for socket(), connect(), sendto(), and recvfrom() */
@@ -71,8 +71,6 @@ int main(int argc, char *argv[])
 	struct timeval timer;				/* Timeval struct for timeouts */
 	char echoBuffer[6];					/* Buffer for receiving echoed string */
 	char clientIP[16];					/* String that holds the client's IP */
-	int echoStringLen;					/* Length of string to echo */
-	int respStringLen;					/* Length of received response */
 	int i;								/* Loop counter */
 
 	if ((argc < 3) || (argc > 4))		/* Test for correct number of arguments */
@@ -113,12 +111,12 @@ int main(int argc, char *argv[])
 	int k = rand()%21;
 
 	for(i = 1; i < 21; i++) {
-        if(k == i) {
-        	k = rand()%21 + i;
-        	if(k%2 == 0) {
-        		//incarnation increment
-        	}
-        }
+		if(k == i) {
+			k = rand()%21 + i;
+			if(k%2 == 0) {
+				//incarnation increment
+			}
+		}
 
 		strcpy(clientRequest.client_ip, clientIP);
 		clientRequest.inc = 10;
@@ -128,17 +126,15 @@ int main(int argc, char *argv[])
 		
 		/* Send the request to the server */
 		if (sendto(sock, &clientRequest, sizeof(clientRequest), 0, (struct sockaddr *)
-		&echoServAddr, sizeof(echoServAddr)) != sizeof(clientRequest))
-			DieWithError("sendto() sent a different number of bytes than expected");
+			&echoServAddr, sizeof(echoServAddr)) != sizeof(clientRequest))
+				DieWithError("sendto() sent a different number of bytes than expected");
   
 		/* Recv a response */
 		fromSize = sizeof(fromAddr);
-		while ((respStringLen = recvfrom(sock, echoBuffer, 5, 0, 
-		(struct sockaddr *) &fromAddr, &fromSize)) != 5) {
+		while (recvfrom(sock, echoBuffer, 5, 0, (struct sockaddr *) &fromAddr, &fromSize)) {
 			if (sendto(sock, &clientRequest, sizeof(clientRequest), 0, (struct sockaddr *)
-		&echoServAddr, sizeof(echoServAddr)) != sizeof(clientRequest))
-			DieWithError("sendto() sent a different number of bytes than expected");
-			//DieWithError("recvfrom() failed");
+				&echoServAddr, sizeof(echoServAddr)) != sizeof(clientRequest))
+					DieWithError("sendto() sent a different number of bytes than expected");
 		}
 
 		if (echoServAddr.sin_addr.s_addr != fromAddr.sin_addr.s_addr)
