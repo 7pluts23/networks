@@ -89,7 +89,7 @@ int main(int argc, char *argv[])
 		echoServPort = 7;	/* 7 is the well-known port for the echo service */
 	
 	srand(time(0));						/* Seed the random character generator */
-	timer.tv_sec = 5;					/* Set timeout to five seconds */
+	timer.tv_sec = 1;					/* Set timeout to five seconds */
 	timer.tv_usec = 0;
 	
 	if(GetIP(clientIP) != 0)
@@ -112,6 +112,7 @@ int main(int argc, char *argv[])
 
 	int k;
 	i = 1;
+	int l = 1;
 
 	do {
 
@@ -120,7 +121,7 @@ int main(int argc, char *argv[])
 			
 		}
 
-	for(i = 1; i < k%22; i++) {
+	for(i = l; i < k%22 + l; i++) {
 
 		strcpy(clientRequest.client_ip, clientIP);
 		clientRequest.inc = 10;
@@ -135,9 +136,13 @@ int main(int argc, char *argv[])
   
 		/* Recv a response */
 		fromSize = sizeof(fromAddr);
-		if ((respStringLen = recvfrom(sock, echoBuffer, 5, 0, 
-		(struct sockaddr *) &fromAddr, &fromSize)) != 5)
-			DieWithError("recvfrom() failed");
+		while ((respStringLen = recvfrom(sock, echoBuffer, 5, 0, 
+		(struct sockaddr *) &fromAddr, &fromSize)) != 5) {
+			if (sendto(sock, &clientRequest, sizeof(clientRequest), 0, (struct sockaddr *)
+		&echoServAddr, sizeof(echoServAddr)) != sizeof(clientRequest))
+			DieWithError("sendto() sent a different number of bytes than expected");
+			//DieWithError("recvfrom() failed");
+		}
 
 		if (echoServAddr.sin_addr.s_addr != fromAddr.sin_addr.s_addr)
 		{
@@ -149,9 +154,10 @@ int main(int argc, char *argv[])
 		echoBuffer[5] = '\0';
 		printf("Received %d: %s\n", i, echoBuffer);	/* Print the echoed arg */
 		sleep(0.1);
-
-		i = k%22 - 1;
 	}
+
+	l = k%22 - 1;
+
 	} while (i != 20);
 	
 	close(sock);
