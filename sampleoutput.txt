@@ -1,0 +1,229 @@
+mayngo@mayngo-UX31E ~/Documents/cse434/Ahmad_Pluta_CSE434_Project $ ./client.out 192.168.1.141 9000 1
+IP: 127.0.1.1
+Received 1: e    
+Received 2: ie   
+Received 3: lie  
+Received 4: mlie 
+Received 5: bmlie
+Received 6: qbmli
+Received 7: nqbml
+Received 8: unqbm
+Received 9: eunqb
+Received 10: geunq
+Received 11: hgeun
+Received 12: jhgeu
+Received 13: qjhge
+Received 14: cqjhg
+Received 15: scqjh
+Received 16: lscqj
+Received 17: mlscq
+Received 18: cmlsc
+Received 19: ocmls
+Received 20: aocml
+
+Stephen@Stephen-PC /cygdrive/c/Users/Stephen/Downloads/network-master/network-master $ ./server.out 9000
+Handling client...
+IP: 127.0.1.1
+Incarnation Number: 0
+Client Number: 1
+Request number: 1
+Data: e
+
+Failure: Not responding
+Handling client...
+IP: 127.0.1.1
+Incarnation Number: 0
+Client Number: 1
+Request number: 2
+Data: i
+
+Handling client...
+IP: 127.0.1.1
+Incarnation Number: 0
+Client Number: 1
+Request number: 3
+Data: l
+
+Failure: Not responding
+Handling client...
+IP: 127.0.1.1
+Incarnation Number: 0
+Client Number: 1
+Request number: 3
+Data: l
+
+Handling client...
+IP: 127.0.1.1
+Incarnation Number: 0
+Client Number: 1
+Request number: 4
+Data: m
+
+Failure: Dropping request
+Handling client...
+IP: 127.0.1.1
+Incarnation Number: 0
+Client Number: 1
+Request number: 4
+Data: m
+
+Failure: Not responding
+Handling client...
+IP: 127.0.1.1
+Incarnation Number: 0
+Client Number: 1
+Request number: 4
+Data: m
+
+Handling client...
+IP: 127.0.1.1
+Incarnation Number: 0
+Client Number: 1
+Request number: 5
+Data: b
+
+Handling client...
+IP: 127.0.1.1
+Incarnation Number: 0
+Client Number: 1
+Request number: 6
+Data: q
+
+Handling client...
+IP: 127.0.1.1
+Incarnation Number: 0
+Client Number: 1
+Request number: 7
+Data: n
+
+Handling client...
+IP: 127.0.1.1
+Incarnation Number: 0
+Client Number: 1
+Request number: 8
+Data: u
+
+Handling client...
+IP: 127.0.1.1
+Incarnation Number: 0
+Client Number: 1
+Request number: 9
+Data: e
+
+Handling client...
+IP: 127.0.1.1
+Incarnation Number: 0
+Client Number: 1
+Request number: 10
+Data: g
+
+Failure: Dropping request
+Handling client...
+IP: 127.0.1.1
+Incarnation Number: 0
+Client Number: 1
+Request number: 10
+Data: g
+
+Failure: Dropping request
+Handling client...
+IP: 127.0.1.1
+Incarnation Number: 0
+Client Number: 1
+Request number: 10
+Data: g
+
+Handling client...
+IP: 127.0.1.1
+Incarnation Number: 0
+Client Number: 1
+Request number: 11
+Data: h
+
+Handling client...
+IP: 127.0.1.1
+Incarnation Number: 0
+Client Number: 1
+Request number: 12
+Data: j
+
+Failure: Dropping request
+Handling client...
+IP: 127.0.1.1
+Incarnation Number: 0
+Client Number: 1
+Request number: 12
+Data: j
+
+Handling client...
+IP: 127.0.1.1
+Incarnation Number: 0
+Client Number: 1
+Request number: 13
+Data: q
+
+Handling client...
+IP: 127.0.1.1
+Incarnation Number: 0
+Client Number: 1
+Request number: 14
+Data: c
+
+Failure: Dropping request
+Handling client...
+IP: 127.0.1.1
+Incarnation Number: 0
+Client Number: 1
+Request number: 14
+Data: c
+
+Handling client...
+IP: 127.0.1.1
+Incarnation Number: 0
+Client Number: 1
+Request number: 15
+Data: s
+
+Handling client...
+IP: 127.0.1.1
+Incarnation Number: 0
+Client Number: 1
+Request number: 16
+Data: l
+
+Handling client...
+IP: 127.0.1.1
+Incarnation Number: 0
+Client Number: 1
+Request number: 17
+Data: m
+
+Handling client...
+IP: 127.0.1.1
+Incarnation Number: 0
+Client Number: 1
+Request number: 18
+Data: c
+
+Handling client...
+IP: 127.0.1.1
+Incarnation Number: 0
+Client Number: 1
+Request number: 19
+Data: o
+
+Failure: Dropping request
+Handling client...
+IP: 127.0.1.1
+Incarnation Number: 0
+Client Number: 1
+Request number: 19
+Data: o
+
+Handling client...
+IP: 127.0.1.1
+Incarnation Number: 0
+Client Number: 1
+Request number: 20
+Data: a
+
