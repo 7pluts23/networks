@@ -120,11 +120,11 @@ int main(int argc, char *argv[])
 
 	for(i = 1; i < 21; i++) {
 		
-		/* Logic for the 0.5 chance at failure */
+		/* Logic for the 0.5 chance at failure after k requests have occurred */
 		if(k == i) {
 			k = rand()%21 + i;
 			if(k%2 == 0) {
-				/* Icarnation increment */
+				/* Incarnation increment */
 				fp = fopen("./inc.txt", "r");
 				temp = fgetc(fp) - 48;
 				fclose(fp);

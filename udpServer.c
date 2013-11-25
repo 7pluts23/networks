@@ -90,9 +90,9 @@ int main(int argc, char *argv[])
 		
 		/* Randomly decide if there should be a failure */
 		fail = rand()%10;
-		if(fail == 9)
+		if(fail == 8)
 			drop = 1;
-		else if(fail == 10)
+		else if(fail == 9)
 			noRespond = 1;
 			
 		/* Set the size of the in-out parameter */
