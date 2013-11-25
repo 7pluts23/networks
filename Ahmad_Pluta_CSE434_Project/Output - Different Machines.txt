@@ -1,4 +1,6 @@
-mayngo@mayngo-UX31E ~/Documents/cse434/Ahmad_Pluta_CSE434_Project $ ./client.out 192.168.1.141 9000 1
+The following shows output from the client and server programs run on different machines. A client was run with client number 1 while the server was running. The output of the client run is shown first.
+
+$ ./client.out 192.168.1.141 9000 1
 IP: 127.0.1.1
 Received 1: e    
 Received 2: ie   
@@ -21,7 +23,7 @@ Received 18: cmlsc
 Received 19: ocmls
 Received 20: aocml
 
-Stephen@Stephen-PC /cygdrive/c/Users/Stephen/Downloads/network-master/network-master $ ./server.out 9000
+$ ./server.out 9000
 Handling client...
 IP: 127.0.1.1
 Incarnation Number: 0
