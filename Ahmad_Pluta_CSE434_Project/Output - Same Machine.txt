@@ -1,0 +1,424 @@
+The following shows output from the client and server programs run on the same machine. Two client programs were run (one with client number 4 and the other with client number 5) while the server was run once. The output of the two client runs are shown first.
+
+$ ./client.out 127.0.0.1 5000 4
+IP: 10.0.1.47
+Received 1: p    
+Received 2: jp   
+Received 3: djp  
+Received 4: adjp 
+Received 5: tadjp
+Received 6: utadj
+Received 7: zutad
+Received 8: czuta
+Received 9: vczut
+Received 10: ovczu
+Received 11: aovcz
+Received 12: raovc
+Received 13: kraov
+Received 14: pkrao
+Received 15: fpkra
+Received 16: ofpkr
+Received 17: oofpk
+Received 18: toofp
+Received 19: rtoof
+Received 20: wrtoo
+
+$ ./client.out 127.0.0.1 5000 5
+IP: 10.0.1.47
+Received 1: fwrto
+Received 2: bfwrt
+Received 3: ibfwr
+Received 4: xibfw
+Received 5: dxibf
+Received 6: edxib
+Received 7: xedxi
+Received 8: jxedx
+Received 9: rjxed
+Received 10: trjxe
+Received 11: htrjx
+Received 12: qhtrj
+Received 13: lqhtr
+Received 14: nlqht
+Received 15: ynlqh
+Received 16: gynlq
+Received 17: agynl
+Received 18: yagyn
+Received 19: cyagy
+Received 20: kcyag
+
+$ ./server.out 5000
+Handling client...
+IP: 10.0.1.47
+Incarnation Number: 0
+Client Number: 4
+Request number: 1
+Data: p
+
+Handling client...
+IP: 10.0.1.47
+Incarnation Number: 0
+Client Number: 4
+Request number: 2
+Data: j
+
+Failure: Dropping request
+Handling client...
+IP: 10.0.1.47
+Incarnation Number: 0
+Client Number: 4
+Request number: 2
+Data: j
+
+Handling client...
+IP: 10.0.1.47
+Incarnation Number: 0
+Client Number: 4
+Request number: 3
+Data: d
+
+Handling client...
+IP: 10.0.1.47
+Incarnation Number: 0
+Client Number: 4
+Request number: 4
+Data: a
+
+Handling client...
+IP: 10.0.1.47
+Incarnation Number: 0
+Client Number: 4
+Request number: 5
+Data: t
+
+Handling client...
+IP: 10.0.1.47
+Incarnation Number: 0
+Client Number: 4
+Request number: 6
+Data: u
+
+Handling client...
+IP: 10.0.1.47
+Incarnation Number: 0
+Client Number: 4
+Request number: 7
+Data: z
+
+Handling client...
+IP: 10.0.1.47
+Incarnation Number: 0
+Client Number: 4
+Request number: 8
+Data: c
+
+Handling client...
+IP: 10.0.1.47
+Incarnation Number: 0
+Client Number: 4
+Request number: 9
+Data: v
+
+Failure: Not responding
+Handling client...
+IP: 10.0.1.47
+Incarnation Number: 0
+Client Number: 4
+Request number: 9
+Data: v
+
+Handling client...
+IP: 10.0.1.47
+Incarnation Number: 0
+Client Number: 4
+Request number: 10
+Data: o
+
+Handling client...
+IP: 10.0.1.47
+Incarnation Number: 0
+Client Number: 4
+Request number: 11
+Data: a
+
+Handling client...
+IP: 10.0.1.47
+Incarnation Number: 0
+Client Number: 4
+Request number: 12
+Data: r
+
+Handling client...
+IP: 10.0.1.47
+Incarnation Number: 0
+Client Number: 4
+Request number: 13
+Data: k
+
+Handling client...
+IP: 10.0.1.47
+Incarnation Number: 0
+Client Number: 4
+Request number: 14
+Data: p
+
+Handling client...
+IP: 10.0.1.47
+Incarnation Number: 0
+Client Number: 4
+Request number: 15
+Data: f
+
+Handling client...
+IP: 10.0.1.47
+Incarnation Number: 0
+Client Number: 4
+Request number: 16
+Data: o
+
+Failure: Not responding
+Handling client...
+IP: 10.0.1.47
+Incarnation Number: 0
+Client Number: 4
+Request number: 16
+Data: o
+
+Failure: Dropping request
+Handling client...
+IP: 10.0.1.47
+Incarnation Number: 0
+Client Number: 4
+Request number: 16
+Data: o
+
+Handling client...
+IP: 10.0.1.47
+Incarnation Number: 0
+Client Number: 4
+Request number: 17
+Data: o
+
+Handling client...
+IP: 10.0.1.47
+Incarnation Number: 0
+Client Number: 4
+Request number: 18
+Data: t
+
+Handling client...
+IP: 10.0.1.47
+Incarnation Number: 1
+Client Number: 4
+Request number: 19
+Data: r
+
+Handling client...
+IP: 10.0.1.47
+Incarnation Number: 1
+Client Number: 4
+Request number: 20
+Data: w
+
+Handling client...
+IP: 10.0.1.47
+Incarnation Number: 0
+Client Number: 5
+Request number: 1
+Data: f
+
+Handling client...
+IP: 10.0.1.47
+Incarnation Number: 0
+Client Number: 5
+Request number: 2
+Data: b
+
+Handling client...
+IP: 10.0.1.47
+Incarnation Number: 0
+Client Number: 5
+Request number: 3
+Data: i
+
+Handling client...
+IP: 10.0.1.47
+Incarnation Number: 0
+Client Number: 5
+Request number: 4
+Data: x
+
+Handling client...
+IP: 10.0.1.47
+Incarnation Number: 0
+Client Number: 5
+Request number: 5
+Data: d
+
+Failure: Not responding
+Handling client...
+IP: 10.0.1.47
+Incarnation Number: 0
+Client Number: 5
+Request number: 5
+Data: d
+
+Handling client...
+IP: 10.0.1.47
+Incarnation Number: 0
+Client Number: 5
+Request number: 6
+Data: e
+
+Handling client...
+IP: 10.0.1.47
+Incarnation Number: 0
+Client Number: 5
+Request number: 7
+Data: x
+
+Handling client...
+IP: 10.0.1.47
+Incarnation Number: 1
+Client Number: 5
+Request number: 8
+Data: j
+
+Handling client...
+IP: 10.0.1.47
+Incarnation Number: 1
+Client Number: 5
+Request number: 9
+Data: r
+
+Failure: Not responding
+Handling client...
+IP: 10.0.1.47
+Incarnation Number: 1
+Client Number: 5
+Request number: 9
+Data: r
+
+Handling client...
+IP: 10.0.1.47
+Incarnation Number: 1
+Client Number: 5
+Request number: 10
+Data: t
+
+Handling client...
+IP: 10.0.1.47
+Incarnation Number: 1
+Client Number: 5
+Request number: 11
+Data: h
+
+Handling client...
+IP: 10.0.1.47
+Incarnation Number: 1
+Client Number: 5
+Request number: 12
+Data: q
+
+Failure: Not responding
+Handling client...
+IP: 10.0.1.47
+Incarnation Number: 1
+Client Number: 5
+Request number: 12
+Data: q
+
+Handling client...
+IP: 10.0.1.47
+Incarnation Number: 1
+Client Number: 5
+Request number: 13
+Data: l
+
+Handling client...
+IP: 10.0.1.47
+Incarnation Number: 1
+Client Number: 5
+Request number: 14
+Data: n
+
+Handling client...
+IP: 10.0.1.47
+Incarnation Number: 1
+Client Number: 5
+Request number: 15
+Data: y
+
+Handling client...
+IP: 10.0.1.47
+Incarnation Number: 1
+Client Number: 5
+Request number: 16
+Data: g
+
+Failure: Dropping request
+Handling client...
+IP: 10.0.1.47
+Incarnation Number: 1
+Client Number: 5
+Request number: 16
+Data: g
+
+Failure: Dropping request
+Handling client...
+IP: 10.0.1.47
+Incarnation Number: 1
+Client Number: 5
+Request number: 16
+Data: g
+
+Handling client...
+IP: 10.0.1.47
+Incarnation Number: 1
+Client Number: 5
+Request number: 17
+Data: a
+
+Handling client...
+IP: 10.0.1.47
+Incarnation Number: 1
+Client Number: 5
+Request number: 18
+Data: y
+
+Handling client...
+IP: 10.0.1.47
+Incarnation Number: 1
+Client Number: 5
+Request number: 19
+Data: c
+
+Failure: Not responding
+Handling client...
+IP: 10.0.1.47
+Incarnation Number: 1
+Client Number: 5
+Request number: 19
+Data: c
+
+Failure: Dropping request
+Handling client...
+IP: 10.0.1.47
+Incarnation Number: 1
+Client Number: 5
+Request number: 19
+Data: c
+
+Handling client...
+IP: 10.0.1.47
+Incarnation Number: 1
+Client Number: 5
+Request number: 20
+Data: k
+
+Failure: Dropping request
+Handling client...
+IP: 10.0.1.47
+Incarnation Number: 1
+Client Number: 5
+Request number: 20
+Data: k

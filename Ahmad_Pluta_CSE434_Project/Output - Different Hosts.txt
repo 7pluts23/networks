@@ -1,3 +1,5 @@
+The following shows output from the client and server programs run on separate machines. The client was run with client number 1 while the server was running. The current directory path shows that the two programs were running on separate machines. The output of the client run is shown first.
+
 mayngo@mayngo-UX31E ~/Documents/cse434/Ahmad_Pluta_CSE434_Project $ ./client.out 192.168.1.141 9000 1
 IP: 127.0.1.1
 Received 1: e    
